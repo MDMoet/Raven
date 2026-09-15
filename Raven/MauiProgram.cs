@@ -17,6 +17,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFormFactor, FormFactor>();
 
         builder.Services.AddMauiBlazorWebView();
+        
+        builder.Services.AddLocalization(options =>
+        {
+            options.ResourcesPath = "Resources";
+        });
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

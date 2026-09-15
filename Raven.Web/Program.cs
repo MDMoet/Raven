@@ -11,7 +11,27 @@ builder.Services.AddRazorComponents()
 // Add device-specific services used by the Raven.Shared project
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
 
+builder.Services.AddLocalization(options =>
+{
+    options.ResourcesPath = "Resources";
+});
+
+var supportedCultures = new[]
+{
+    "en",
+    "nl"
+};
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options
+        .SetDefaultCulture("en")
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures);
+});
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -23,7 +43,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
-
+app.UseRequestLocalization();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
