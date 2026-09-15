@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Raven.Shared/Raven.Shared.csproj" />
+  <Project Path="Raven.Web/Raven.Web.csproj" />
+  <Project Path="Raven/Raven.csproj" />
+</Solution>
